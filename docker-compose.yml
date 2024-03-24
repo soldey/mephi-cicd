@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  db:
+    image: mysql:8.3.0-oracle
+    container_name: mysql-db
+    volumes:
+      - db-data:/var/lib/mysql/
+    networks:
+      - backend
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 3s
+      retries: 10
+    env_file:
+      - .env
+
+  server:
+    container_name: server
+    build:
+      context: spring-backend
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    networks:
+      - backend
+    depends_on:
+      - db
+
+  client:
+    container_name: client
+    build:
+      context: react-frontend
+      dockerfile: Dockerfile
+    networks:
+      - backend
+
+  nginx:
+    container_name: nginx
+    build:
+      dockerfile: Dockerfile
+      context: nginx
+    ports:
+      - "81:5000"
+    networks:
+      - backend
+    depends_on:
+      - client
+      - server
+
+volumes:
+  db-data:
+
+networks:
+  backend:
