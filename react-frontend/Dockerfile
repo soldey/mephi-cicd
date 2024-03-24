@@ -7,8 +7,9 @@ RUN apk update && \
     rm -rf /var/cache/apk/*
 
 COPY package.json .
+COPY package-lock.json .
 
-RUN npm install --force
+RUN npm install
 
 COPY . .
 

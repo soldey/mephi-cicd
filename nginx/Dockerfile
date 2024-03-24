@@ -4,7 +4,7 @@ RUN apk add nginx && \
     chown -R 1002:1002 /var/lib/nginx /var/log/nginx /run/nginx/ && \
     rm -rf /var/cache/apk/*
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
+VOLUME ["/etc/nginx"]
 
 USER 1002
 
