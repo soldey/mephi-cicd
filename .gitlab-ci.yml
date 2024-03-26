@@ -20,7 +20,7 @@ build:
     - docker-compose build
 
 test-backend:
-  image: maven:3.8.5-openjdk-17-alpine
+  image: maven:3.8.7-openjdk-18-slim
   stage: test
   tags:
     - docker
