@@ -5,6 +5,13 @@ workflow:
   rules:
     - if: $CI_PIPELINE_SOURCE == "push"
 
+before_script:
+  - docker info
+  - apk update
+  - apk upgrade
+  - apk add python python-dev py-pip build-base
+  - pip install docker-compose
+
 stages:
   - build
   - test
