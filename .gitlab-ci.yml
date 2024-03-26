@@ -30,8 +30,7 @@ test-backend:
     MYSQL_DATABASE: hobbie_db
     MYSQL_ROOT_PASSWORD: root
   script:
-    - cd springboot-backend
-    - mvn test
+    - mvn -f springboot-backend/pom.xml test
 
 test-frontend:
   image: node:18-alpine
