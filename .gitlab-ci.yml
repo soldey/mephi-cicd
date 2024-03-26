@@ -49,21 +49,21 @@ deploy:
   tags:
     - docker
   script:
-    - docker login ${CI_REGISTRY} -u ${CI_REGISTRY_USER} --password-stdin ${CI_JOB_TOKEN}
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin $CI_JOB_TOKEN
     - docker-compose build
 
-    - docker tag springboot-backend:latest ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}-springboot-backend:latest
-    - docker push ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}-springboot-backend:latest
-    - docker tag ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}-springboot-backend:latest ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}-springboot-backend:${CI_COMMIT_SHORT_SHA}
-    - docker push ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}-springboot-backend:${CI_COMMIT_SHORT_SHA}
+    - docker tag springboot-backend:latest $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME-springboot-backend:latest
+    - docker push $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME-springboot-backend:latest
+    - docker tag $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME-springboot-backend:latest $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME-springboot-backend:$CI_COMMIT_SHORT_SHA
+    - docker push $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME-springboot-backend:$CI_COMMIT_SHORT_SHA
   
-    - docker tag react-frontend:latest ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}-react-frontend:latest
-    - docker push ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}-react-frontend:latest
-    - docker tag ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}-react-frontend:latest ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}-react-frontend:${CI_COMMIT_SHORT_SHA}
-    - docker push ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}-react-frontend:${CI_COMMIT_SHORT_SHA}
+    - docker tag react-frontend:latest $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME-react-frontend:latest
+    - docker push $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME-react-frontend:latest
+    - docker tag $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME-react-frontend:latest $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME-react-frontend:$CI_COMMIT_SHORT_SHA
+    - docker push $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME-react-frontend:$CI_COMMIT_SHORT_SHA
 
-    - docker tag nginx:latest ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}-nginx:latest
-    - docker push ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}-nginx:latest
-    - docker tag ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME]-nginx:latest ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}-nginx:${CI_COMMIT_SHORT_SHA}
-    - docker push ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}-nginx:${CI_COMMIT_SHORT_SHA}
+    - docker tag nginx:latest $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME-nginx:latest
+    - docker push $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME-nginx:latest
+    - docker tag $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME]-nginx:latest $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME-nginx:$CI_COMMIT_SHORT_SHA
+    - docker push $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME-nginx:$CI_COMMIT_SHORT_SHA
 
