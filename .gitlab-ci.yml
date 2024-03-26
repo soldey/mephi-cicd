@@ -49,7 +49,7 @@ deploy:
   tags:
     - docker
   script:
-    - docker login -u gitlab-ci-token -p ${CI_BUILD_TOKEN} ${CI_REGISTRY}
+    - docker login ${CI_REGISTRY} -u ${CI_REGISTRY_USER} --password-stdin ${CI_JOB_TOKEN}
     - docker-compose build
 
     - docker tag springboot-backend:latest ${CI_REGISTRY_IMAGE}/${CI_COMMIT_REF_NAME}-springboot-backend:latest
