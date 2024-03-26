@@ -1,5 +1,8 @@
+image: docker:26.0.0
+
 services:
-  - docker:latest
+  - name: docker:26.0.0-dind
+    alias: docker
 
 workflow:
   rules:
