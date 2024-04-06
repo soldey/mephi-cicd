@@ -14,7 +14,7 @@ build:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker tag docker.io/library/lab-5-client $CONTAINER_RELEASE_IMAGE/client
     - docker tag docker.io/library/lab-5-server $CONTAINER_RELEASE_IMAGE/server
-    - docker tag docker.io/library/nginx $CONTAINER_RELEASE_IMAGE/nginx
+    - docker tag docker.io/library/lab-5-nginx $CONTAINER_RELEASE_IMAGE/nginx
     - docker push $CONTAINER_RELEASE_IMAGE/client
     - docker push $CONTAINER_RELEASE_IMAGE/server
     - docker push $CONTAINER_RELEASE_IMAGE/nginx
