@@ -22,4 +22,4 @@ build:
     changes:
       - react-frontend/*
       - spring-backend/*
-      - **
+      - /*
