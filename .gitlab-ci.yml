@@ -8,9 +8,6 @@ default:
 workflow:
   rules:
     - if: $CI_PIPELINE_SOURCE == "push"
-    - changes:
-      - react-frontend/*
-      - spring-backend/*
 
 stages:
   - build
@@ -25,3 +22,7 @@ build:
     - docker push $CI_REGISTRY_IMAGE/client
     - docker push $CI_REGISTRY_IMAGE/server
     - docker push $CI_REGISTRY_IMAGE/nginx
+    only:
+      changes:
+        - react-frontend/*
+        - spring-backend/*
