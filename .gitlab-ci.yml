@@ -20,5 +20,6 @@ build:
     - docker push $CONTAINER_RELEASE_IMAGE/nginx
   only:
     changes:
-      - react-frontend/**/*
-      - spring-backend/**/*
+      - react-frontend/*
+      - spring-backend/*
+      - **
