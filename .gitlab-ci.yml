@@ -1,12 +1,6 @@
 stages:
-  - login
   - build
   - publish
-
-login:
-  stage: login
-  script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
 
 build:
   stage: build
@@ -15,6 +9,7 @@ build:
     - docker:dind
   script:
     - docker-compose build
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker tag docker.io/library/lab-5-client $CI_REGISTRY_IMAGE/client
     - docker tag docker.io/library/lab-5-server $CI_REGISTRY_IMAGE/server
     - docker tag docker.io/library/lab-5-nginx $CI_REGISTRY_IMAGE/nginx
