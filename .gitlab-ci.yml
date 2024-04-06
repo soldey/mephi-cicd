@@ -24,5 +24,5 @@ build:
     - docker push $CI_REGISTRY_IMAGE/nginx
   only:
     changes:
-      - react-frontend/*
-      - spring-backend/*
+      - react-frontend/**/*
+      - spring-backend/**/*
