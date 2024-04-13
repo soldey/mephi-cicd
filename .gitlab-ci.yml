@@ -3,8 +3,6 @@ default:
   services:
     - name: docker:dind
       alias: docker
-  before_script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
 
 workflow:
   rules:
@@ -16,8 +14,11 @@ stages:
   - deploy
 
 build:
+  tags:
+    - docker
   stage: build
   script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker-compose build
     - docker tag docker.io/library/lab-5-client $CI_REGISTRY_IMAGE/client
     - docker tag docker.io/library/lab-5-server $CI_REGISTRY_IMAGE/server
@@ -33,8 +34,6 @@ build:
 test-backend:
   image: maven:3.8.7-openjdk-18-slim
   stage: test
-  tags:
-    - docker
   services:
     - name: mysql:5.7
   variables:
@@ -47,8 +46,6 @@ test-backend:
 test-frontend:
   image: node:18-alpine
   stage: test
-  tags:
-    - docker
   before_script:
     - cd react-frontend
   script:
@@ -57,7 +54,10 @@ test-frontend:
 
 deploy:
   stage: deploy
+  tags:
+    - docker
   script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker pull $CI_REGISTRY_IMAGE/client
     - docker pull $CI_REGISTRY_IMAGE/server
     - docker pull $CI_REGISTRY_IMAGE/nginx
