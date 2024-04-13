@@ -26,6 +26,10 @@ build:
     - docker push $CI_REGISTRY_IMAGE/client
     - docker push $CI_REGISTRY_IMAGE/server
     - docker push $CI_REGISTRY_IMAGE/nginx
+  only:
+    changes:
+      - react-frontend/**/*
+      - spring-backend/**/*
 
 test-backend:
   image: maven:3.8.7-openjdk-18-slim
