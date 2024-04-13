@@ -12,5 +12,5 @@ public class HobbieBackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(HobbieBackendApplication.class, args);
     }
-
+    
 }

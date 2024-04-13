@@ -23,6 +23,7 @@ RUN apk add nginx && \
     chown -R 1001:1001 /var/lib/nginx /var/log/nginx /run/nginx/ && \
     rm -rf /var/cache/apk/*
 
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build app/build/ /var/www/html/
 
 RUN mv asset-manifest.json manifest.json

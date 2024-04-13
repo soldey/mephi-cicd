@@ -48,7 +48,7 @@ services:
       - client
       - server
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
 
 volumes:
   db-data:
