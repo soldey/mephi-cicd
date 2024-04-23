@@ -4,9 +4,9 @@ include:
   - local: '/ci/.deploy.yaml'
 
 default:
-  image: docker:latest
+  image: docker:26.0.0
   services:
-    - name: docker:dind
+    - name: docker:26.0.0-dind
       alias: docker
 
 workflow:
