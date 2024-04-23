@@ -7,3 +7,7 @@
     - docker push $CI_REGISTRY_IMAGE/client
     - docker push $CI_REGISTRY_IMAGE/server
     - docker push $CI_REGISTRY_IMAGE/nginx
+  only:
+    changes:
+      - react-frontend/**/*
+      - spring-backend/**/*
