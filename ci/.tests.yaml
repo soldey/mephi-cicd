@@ -1,0 +1,18 @@
+.backend-tests:
+  image: maven:3.8.7-openjdk-18-slim
+  services:
+    - name: mysql:5.7
+  variables:
+    MYSQL_DATABASE: hobbie_db
+    MYSQL_ROOT_PASSWORD: root
+  script:
+    - cd spring-backend
+    - mvn test
+
+.frontend-tests:
+  image: node:18-alpine
+  before_script:
+    - cd react-frontend
+  script:
+    - npm install
+    - npm run test

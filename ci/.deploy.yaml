@@ -1,0 +1,9 @@
+.deploy:
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker pull $CI_REGISTRY_IMAGE/client
+    - docker pull $CI_REGISTRY_IMAGE/server
+    - docker pull $CI_REGISTRY_IMAGE/nginx
+    - docker save $CI_REGISTRY_IMAGE/client | ssh -C user@my.host docker load
+    - docker save $CI_REGISTRY_IMAGE/server | ssh -C user@my.host docker load
+    - docker save $CI_REGISTRY_IMAGE/nginx | ssh -C user@my.host docker load
