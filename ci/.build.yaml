@@ -1,0 +1,13 @@
+.build:
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE/server -f spring-backend/Dockerfile ./spring-backend
+    - docker build -t $CI_REGISTRY_IMAGE/nginx -f nginx/Dockerfile ./nginx
+    - docker build -t $CI_REGISTRY_IMAGE/client -f react-frontend/Dockerfile ./react-frontend
+    - docker push $CI_REGISTRY_IMAGE/client
+    - docker push $CI_REGISTRY_IMAGE/server
+    - docker push $CI_REGISTRY_IMAGE/nginx
+  only:
+    changes:
+      - react-frontend/**/*
+      - spring-backend/**/*
