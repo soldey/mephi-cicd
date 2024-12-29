@@ -3,8 +3,6 @@ name: CI-CD Pipeline
 on:
   release:
     types: [created]
-  push:
-    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 
@@ -23,10 +21,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '18'
-
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
-	working-directory: spring-backend
 
       - name: Run tests
         run: mvn test
